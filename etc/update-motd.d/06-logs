@@ -1,0 +1,4 @@
+#! /bin/bash
+echo "### Latest entries in auth log ###"
+tail -n5 /var/log/auth.log |sed s/"]:"/"\n"/ | grep -v $(date +%b)
+echo

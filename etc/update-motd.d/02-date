@@ -1,0 +1,5 @@
+#! /bin/bash
+echo "### UTC date/time ###"
+currentime=$(date --utc +%D\ %T)
+echo -e System.Time=\"${currentime}\"
+echo

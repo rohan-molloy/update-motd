@@ -1,0 +1,15 @@
+#! /bin/sh
+
+# IP addresses of the machine (except 127.0.0.0/8)
+echo "### Host IP addresses ###"
+printf "IP.Address=\"%s\"\n" $(hostname --all-ip-addresses) | grep -v 127.0.0
+echo
+
+echo "### Traffic count on primary interface ###"
+printf "RX=\"%s\"\n" `ifconfig $(ip route | grep default | tr ' ' '\n' | grep -B0 -a1 dev | tail -n1) | grep "RX bytes" | awk '{print $3$4}' | tr -d "()"`
+printf "TX=\"%s\"\n" `ifconfig $(ip route | grep default | tr ' ' '\n' | grep -B0 -a1 dev | tail -n1) | grep "TX bytes" | awk '{print $7$8}' | tr -d "()"`
+echo
+# Established connections, limit 10 lines
+echo "### Established connections ###"
+ss -lt4o state established  2>/dev/null | tail -n+2 | awk '{print $3,$4}' | column -t | head -n 10
+echo

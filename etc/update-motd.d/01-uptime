@@ -1,0 +1,5 @@
+#! /bin/bash
+echo "### System uptime ###"
+uptime=$(uptime --pretty)
+echo -e System.uptime=\"${uptime#up }\"
+echo

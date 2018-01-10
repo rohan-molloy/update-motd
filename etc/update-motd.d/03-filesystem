@@ -1,0 +1,4 @@
+#! /bin/bash
+echo "### Root Filesystem ####"
+printf "Filesystem.Device=\"%s\"\nFilesystem.Size=%s\nFilesystem.Used=%s\nFilesystem.Avail=%s\nFilesystem.Usage=%s\n" $(df -h / |tail -n+2|head -n1 | awk '{print $1,$2,$3,$4,$5}')
+echo

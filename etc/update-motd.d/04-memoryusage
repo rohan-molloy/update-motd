@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "### Memory Usage ###"
+printf "Memory.Total=%s\nMemory.Used=%s\nMemory.Free=%s\nMemory.Shared=%s\nMemory.Buffered=%s\nMemory.Available=%s\n" $(free -ht | tail -n+2 | grep Mem: | awk '{print $2,$3,$4,$5,$6,$7}')
+echo
